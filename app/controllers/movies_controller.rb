@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
       @movies = Movie.all.order(@sort)
     end
 
-    #If one is nil we redirect
+    #Logic from the readme. If the session was loaded, we want to call redirect to get the URI correct
     if loaded_session 
      flash.keep
      redirect_to movies_path(:sort=>@sort, :ratings=>@checked_boxes)
