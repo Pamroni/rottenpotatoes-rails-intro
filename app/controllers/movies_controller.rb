@@ -11,8 +11,24 @@ class MoviesController < ApplicationController
   end
 
   def index
+    #Load all the ratings from the movie class
+    @all_ratings = Movie.ratings
+
+    #Sort problem
     @sort = params[:sort]
-    @movies = Movie.all.order(@sort)
+
+    #If there are params sent we filter out the ratings also
+    if params[:ratings]
+      #use this to keep track in the index view
+      @checked_boxes = params[:ratings]
+      @movies = Movie.where(rating: @checked_boxes.keys).order(@sort)
+      #puts params[:ratings].keys
+    else #If not just stick to the sort stuff
+      #sets up the nil case
+      @checked_boxes = []
+      @movies = Movie.all.order(@sort)
+    end
+    @movies
   end
 
   def new
