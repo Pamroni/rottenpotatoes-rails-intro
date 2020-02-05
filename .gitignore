@@ -16,3 +16,9 @@
 !/log/.keep
 /tmp
 log
+
+
+#My stuff 
+
+heroku*
+*.DS_STORE
